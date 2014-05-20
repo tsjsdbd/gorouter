@@ -1,9 +1,6 @@
 {
 	"ImportPath": "github.com/cloudfoundry/gorouter",
 	"GoVersion": "go1.2.1",
-	"Packages": [
-		"./..."
-	],
 	"Deps": [
 		{
 			"ImportPath": "code.google.com/p/gogoprotobuf/proto",
@@ -12,6 +9,22 @@
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/candiedyaml",
 			"Rev": "dfcb028513f33935d16a9c278a9b38c39dae6343"
+		},
+		{
+			"ImportPath": "github.com/cloudfoundry-incubator/dropsonde",
+			"Rev": "7ff5972201d57cf1686a59cbfea0b512af8cb9bd"
+		},
+		{
+			"ImportPath": "github.com/cloudfoundry-incubator/dropsonde-common/emitter",
+			"Rev": "62cb952d75d41e2a07cddfa761a50833b27fcc46"
+		},
+		{
+			"ImportPath": "github.com/cloudfoundry-incubator/dropsonde-common/events",
+			"Rev": "62cb952d75d41e2a07cddfa761a50833b27fcc46"
+		},
+		{
+			"ImportPath": "github.com/cloudfoundry-incubator/dropsonde-common/factories",
+			"Rev": "62cb952d75d41e2a07cddfa761a50833b27fcc46"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry/gosteno",

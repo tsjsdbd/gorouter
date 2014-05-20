@@ -11,6 +11,7 @@ import (
 	router_http "github.com/cloudfoundry/gorouter/common/http"
 	"github.com/cloudfoundry/gorouter/route"
 	steno "github.com/cloudfoundry/gosteno"
+	"github.com/cloudfoundry-incubator/dropsonde/autowire"
 )
 
 const (
@@ -154,7 +155,7 @@ func (p *proxy) ServeHTTP(responseWriter http.ResponseWriter, request *http.Requ
 		return
 	}
 
-	proxyTransport := &proxyRoundTripper{
+	 roundTripper := &proxyRoundTripper{
 		transport: p.transport,
 		after: func(rsp *http.Response, err error) {
 			accessLog.FirstByteAt = time.Now()
@@ -182,6 +183,7 @@ func (p *proxy) ServeHTTP(responseWriter http.ResponseWriter, request *http.Requ
 			}
 		},
 	}
+	proxyTransport := autowire.InstrumentedRoundTripper(roundTripper)
 
 	proxyWriter := newProxyResponseWriter(responseWriter)
 	p.newReverseProxy(proxyTransport, routeEndpoint, request).ServeHTTP(proxyWriter, request)

@@ -8,6 +8,7 @@ import (
 	"github.com/cloudfoundry/gorouter/varz"
 	steno "github.com/cloudfoundry/gosteno"
 	"github.com/cloudfoundry/yagnats"
+	"github.com/cloudfoundry-incubator/dropsonde/autowire"
 
 	"bytes"
 	"compress/zlib"
@@ -114,7 +115,7 @@ func (r *Router) Run() <-chan error {
 	server := http.Server{
 		ReadTimeout:  server_timeout,
 		WriteTimeout: server_timeout,
-		Handler:      r.proxy,
+		Handler:      autowire.InstrumentedHandler(r.proxy),
 	}
 
 	errChan := make(chan error, 1)
