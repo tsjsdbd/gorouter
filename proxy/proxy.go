@@ -199,6 +199,7 @@ func (p *proxy) newReverseProxy(proxyTransport http.RoundTripper, endpoint *rout
 			request.URL.Host = endpoint.CanonicalAddr()
 			request.URL.Opaque = req.URL.Opaque
 			request.URL.RawQuery = req.URL.RawQuery
+			request.Header.Set("X-CF-ApplicationID", endpoint.ApplicationId)
 
 			setRequestXRequestStart(req)
 			setRequestXVcapRequestId(req, nil)

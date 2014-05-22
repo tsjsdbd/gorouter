@@ -21,7 +21,7 @@ func NewHttpStart(req *http.Request, peerType events.PeerType, requestId *uuid.U
 		RequestId:     NewUUID(requestId),
 		PeerType:      &peerType,
 		Method:        events.HttpStart_Method(events.HttpStart_Method_value[req.Method]).Enum(),
-		Uri:           proto.String(fmt.Sprintf("%s%s", req.URL.Host, req.URL.Path)),
+		Uri:           proto.String(fmt.Sprintf("%s%s", req.Host, req.URL.Path)),
 		RemoteAddress: proto.String(req.RemoteAddr),
 		UserAgent:     proto.String(req.UserAgent()),
 	}
