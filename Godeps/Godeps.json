@@ -12,7 +12,7 @@
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/dropsonde",
-			"Rev": "1899fd2779ededce442db56848a76557c5a2dce8"
+			"Rev": "6612d444d385ceaff96a1d2b8c0cead2f0e8cd59"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry/gosteno",
