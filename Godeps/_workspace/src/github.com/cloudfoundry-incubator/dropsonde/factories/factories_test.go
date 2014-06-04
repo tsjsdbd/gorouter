@@ -6,8 +6,8 @@ import (
 	. "github.com/onsi/gomega"
 
 	"code.google.com/p/gogoprotobuf/proto"
-	"github.com/cloudfoundry-incubator/dropsonde-common/events"
-	"github.com/cloudfoundry-incubator/dropsonde-common/factories"
+	"github.com/cloudfoundry-incubator/dropsonde/events"
+	"github.com/cloudfoundry-incubator/dropsonde/factories"
 	"net/http"
 )
 
@@ -88,6 +88,13 @@ var _ = Describe("HTTP event creation", func() {
 			stopEvent.Timestamp = nil
 
 			Expect(stopEvent).To(Equal(expectedStopEvent))
+		})
+	})
+
+	Describe("StringFromUUID", func() {
+		It("returns a string for a UUID", func() {
+			id := factories.NewUUID(requestId)
+			Expect(factories.StringFromUUID(id)).To(Equal(requestId.String()))
 		})
 	})
 })

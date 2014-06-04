@@ -12,19 +12,7 @@
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry-incubator/dropsonde",
-			"Rev": "3993f2d0930c99c4458f9050516f56c2e0fca44b"
-		},
-		{
-			"ImportPath": "github.com/cloudfoundry-incubator/dropsonde-common/emitter",
-			"Rev": "f97b186ffa284222a6ed29d7fb53a9857e53f506"
-		},
-		{
-			"ImportPath": "github.com/cloudfoundry-incubator/dropsonde-common/events",
-			"Rev": "f97b186ffa284222a6ed29d7fb53a9857e53f506"
-		},
-		{
-			"ImportPath": "github.com/cloudfoundry-incubator/dropsonde-common/factories",
-			"Rev": "f97b186ffa284222a6ed29d7fb53a9857e53f506"
+			"Rev": "1899fd2779ededce442db56848a76557c5a2dce8"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry/gosteno",

@@ -1,7 +1,7 @@
 package fake
 
 import (
-	"github.com/cloudfoundry-incubator/dropsonde-common/events"
+	"github.com/cloudfoundry-incubator/dropsonde/events"
 	"sync"
 )
 

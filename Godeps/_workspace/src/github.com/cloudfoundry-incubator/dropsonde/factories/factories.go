@@ -4,7 +4,7 @@ import (
 	"code.google.com/p/gogoprotobuf/proto"
 	"encoding/binary"
 	"fmt"
-	"github.com/cloudfoundry-incubator/dropsonde-common/events"
+	"github.com/cloudfoundry-incubator/dropsonde/events"
 	uuid "github.com/nu7hatch/gouuid"
 	"net/http"
 	"strconv"
@@ -13,6 +13,13 @@ import (
 
 func NewUUID(id *uuid.UUID) *events.UUID {
 	return &events.UUID{Low: proto.Uint64(binary.LittleEndian.Uint64(id[:8])), High: proto.Uint64(binary.LittleEndian.Uint64(id[8:]))}
+}
+
+func StringFromUUID(id *events.UUID) string {
+	var u [16]byte
+	binary.LittleEndian.PutUint64(u[:8], id.GetLow())
+	binary.LittleEndian.PutUint64(u[8:], id.GetHigh())
+	return fmt.Sprintf("%x-%x-%x-%x-%x", u[0:4], u[4:6], u[6:8], u[8:10], u[10:])
 }
 
 func NewHttpStart(req *http.Request, peerType events.PeerType, requestId *uuid.UUID) *events.HttpStart {
