@@ -118,11 +118,23 @@ access_log: "/tmp/access_log"
 	})
 
 	Describe("Process", func() {
+		Context("Validate Parameters", func() {		
+			It("panics when StartResponseDelayInterval is greater than DropletStaleThreshold", func() {
+				var b = []byte(`
+droplet_stale_threshold: 14
+start_response_delay_interval: 15
+`)
+
+				config.Initialize(b)
+				Ω(config.Process).Should(Panic(), "StartResponseDelayInterval cannot be greater than DropletStaleThreshold.")
+			})
+		})	
+
 		It("converts intervals to durations", func() {
 			var b = []byte(`
 publish_start_message_interval: 1
 prune_stale_droplets_interval: 2
-droplet_stale_threshold: 3
+droplet_stale_threshold: 30
 publish_active_apps_interval: 4
 start_response_delay_interval: 15
 `)
@@ -132,7 +144,7 @@ start_response_delay_interval: 15
 
 			Ω(config.PublishStartMessageIntervalInSeconds).To(Equal(1))
 			Ω(config.PruneStaleDropletsInterval).To(Equal(2 * time.Second))
-			Ω(config.DropletStaleThreshold).To(Equal(3 * time.Second))
+			Ω(config.DropletStaleThreshold).To(Equal(30 * time.Second))
 			Ω(config.PublishActiveAppsInterval).To(Equal(4 * time.Second))
 			Ω(config.StartResponseDelayInterval).To(Equal(15 * time.Second))
 		})

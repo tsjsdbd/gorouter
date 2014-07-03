@@ -114,6 +114,10 @@ func DefaultConfig() *Config {
 func (c *Config) Process() {
 	var err error
 
+	if c.StartResponseDelayIntervalInSeconds > c.DropletStaleThresholdInSeconds {
+		panic("StartResponseDelayInterval cannot be greater than DropletStaleThreshold.")
+	}
+
 	c.PruneStaleDropletsInterval = time.Duration(c.PruneStaleDropletsIntervalInSeconds) * time.Second
 	c.DropletStaleThreshold = time.Duration(c.DropletStaleThresholdInSeconds) * time.Second
 	c.PublishActiveAppsInterval = time.Duration(c.PublishActiveAppsIntervalInSeconds) * time.Second
